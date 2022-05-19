@@ -36,6 +36,9 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
         });
+
+        //web.phpの`->where()`を使わずにパラメータを制限できる
+        //Route::pattern('tweetId', '[0-9]+');
     }
 
     /**
