@@ -12,6 +12,9 @@
 <body>
     <h1>つぶやきアプリ</h1>
     <div>
+        @if (session('feedback.success'))
+            <p style="color: green;">{{ session('feedback.success') }}</p>
+        @endif
         <p>投稿フォーム</p>
         <form action="{{ route('tweet.create') }}" method="post">
             @csrf
@@ -29,7 +32,12 @@
             <details>
                 <summary>{{ $tweet->content }}</summary>
                 <div>
-                    <a href="{{ route('tweet.update.index', ['tweetId' => $tweet->id ]) }}">編集</a>
+                    <a href="{{ route('tweet.update.index', ['tweetId' => $tweet->id]) }}">編集</a>
+                    <form action="{{ route('tweet.delete', ['tweetId' => $tweet->id ]) }}" method="post">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit">削除</button>
+                    </form>
                 </div>
             </details>
         @endforeach
