@@ -11,6 +11,7 @@
 
 <body>
     <h1>つぶやきアプリ</h1>
+    @auth
     <div>
         @if (session('feedback.success'))
             <p style="color: green;">{{ session('feedback.success') }}</p>
@@ -27,10 +28,11 @@
             <button type="submit">投稿</button>
         </form>
     </div>
+    @endauth
     <div>
         @foreach ($tweets as $tweet)
             <details>
-                <summary>{{ $tweet->content }}</summary>
+                <summary>{{ $tweet->content }} by {{ $tweet->user->name }}</summary>
                 <div>
                     <a href="{{ route('tweet.update.index', ['tweetId' => $tweet->id]) }}">編集</a>
                     <form action="{{ route('tweet.delete', ['tweetId' => $tweet->id ]) }}" method="post">

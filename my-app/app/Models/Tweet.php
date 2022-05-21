@@ -25,4 +25,9 @@ class Tweet extends Model
     //タイムスタンプ用カラムの名前がデフォルトと異なるとき：
     //const CREATED_AT = 'created_at';
     //const UPDATED_AT = 'updated_at';
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
