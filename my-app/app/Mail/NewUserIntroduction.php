@@ -7,8 +7,9 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+//use Illuminate\Support\Facades\Log;
 
-class NewUserIntroduction extends Mailable
+class NewUserIntroduction extends Mailable implements ShouldQueue //空インターフェース
 {
     use Queueable, SerializesModels;
 
@@ -35,6 +36,7 @@ class NewUserIntroduction extends Mailable
      */
     public function build()
     {
+        //Log::debug('NewUserIntroduction'); //出ない
         return $this->markdown('email.new_user_introduction');
     }
 }

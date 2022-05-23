@@ -11,6 +11,7 @@ use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+//use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rules;
 
 class RegisteredUserController extends Controller
@@ -55,6 +56,8 @@ class RegisteredUserController extends Controller
         foreach($allUser as $user){
             $mailer->to($user->email)->send(new NewUserIntroduction($user, $newUser));
         }
+
+        //Log::debug('RegisterUserController');
 
         return redirect(RouteServiceProvider::HOME);
     }
