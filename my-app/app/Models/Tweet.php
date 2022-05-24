@@ -30,4 +30,11 @@ class Tweet extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function images()
+    {
+        //多対多で定義しているが実質は一対多 <- tweet_images.image_idをuniqueにしてもORMには反映できない？
+        return $this->belongsToMany(Image::class, 'tweet_images')
+            ->using(TweetImage::class);
+    }
 }
