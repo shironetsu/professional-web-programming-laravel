@@ -25,6 +25,8 @@ class TweetServiceTest extends TestCase
          * [Intelephense thinks Mockery::mock\(\) returns a string · Issue \#1784 · bmewburn/vscode\-intelephense](https://github.com/bmewburn/vscode-intelephense/issues/1784)
          * mockオブジェクトがstring型で判定されてしまうバグがある。
          */
+
+         /** @var  Mockery\MockInterface $mock */
         $mock->shouldReceive('where->first')->andReturn((object)[
             'id' => 1,
             'user_id' => 1
