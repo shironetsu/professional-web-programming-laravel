@@ -17,6 +17,11 @@ class IndexController extends Controller
     public function __invoke(Request $request, TweetService $tweetService)
     {
         $tweets = $tweetService->getTweets();
+        
+        // レポート画面が出る
+        // dump($tweets);
+        // app(\App\Exceptions\Handler::class)->render(request(), throw new \Error('dump report'));
+        
         return view('tweet.index')->with('tweets', $tweets);
     }
 }
