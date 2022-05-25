@@ -47,4 +47,21 @@ class TweetService
             }
         });
     }
+
+    public function deleteTweet(int $tweetId)
+    {
+        DB::transaction(function() use ($tweetId){
+            $tweet = Tweet::where('id', $tweetId)->firstOrFail();
+            $tweet->images()->each(function ($image) use ($tweet){
+                $filePath = 'public/images/' . $image->name;
+                if(Storage::exists($filePath)){
+                    Storage::delete($filePath);
+                }
+                $tweet->images()->detach($image->id);
+                $image->delete();
+            });
+
+            $tweet->delete();
+        });
+    }
 }
