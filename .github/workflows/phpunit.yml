@@ -9,6 +9,9 @@ env:
   DB_PASSWORD: password
   MAIL_FROM_ADDRESS: info@example.com
 
+defaults:
+  working-directory: my-app
+
 jobs:
   phpunit:
 
