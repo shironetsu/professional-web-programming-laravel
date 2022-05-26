@@ -10,7 +10,8 @@ env:
   MAIL_FROM_ADDRESS: info@example.com
 
 defaults:
-  working-directory: my-app
+  run:
+    working-directory: my-app
 
 jobs:
   phpunit:
