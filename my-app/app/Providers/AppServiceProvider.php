@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(Cloudinary::class, function(){
             return new Cloudinary([
                 'cloud_name' => config('cloudinary.cloud_name'),
-                'app_key' => config('cloudinary.api_key'),
+                'api_key' => config('cloudinary.api_key'),
                 'api_secret' => config('cloudinary.api_secret')
             ]);
         });
