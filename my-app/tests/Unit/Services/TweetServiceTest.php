@@ -5,6 +5,7 @@ namespace Tests\Unit\Services;
 use App\Services\TweetService;
 use Mockery;
 use PHPUnit\Framework\TestCase;
+use App\Modules\ImageUpload\ImageManagerInterface;
 
 class TweetServiceTest extends TestCase
 {
@@ -16,7 +17,9 @@ class TweetServiceTest extends TestCase
      */
     public function test_check_own_tweet() //スネークケースらしい
     {
-        $tweetService = new TweetService();
+        /** @var ImageManagerInterface */
+        $imageManager = Mockery::mock(ImageManagerInterface::class);
+        $tweetService = new TweetService($imageManager);
         
         $mock = Mockery::mock('alias:App\Models\Tweet');
         //$mock = Mockery::mock(\App\Models\Tweet::class);
